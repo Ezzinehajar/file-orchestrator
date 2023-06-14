@@ -4,7 +4,9 @@
 
 This is a internship project, where they will be able to exercise technical skills on the following topics:
 - Java
-- Spring Boot
+- Spring 
+	- SpringBoot
+	- SpringWeb
 - SQL
 - Database
 - Liquibase
@@ -13,10 +15,11 @@ This is a internship project, where they will be able to exercise technical skil
 - Docker
 - Heroku
 - Sonar
+- [Markdown syntax](https://www.markdownguide.org/basic-syntax/)
 
 ## Features
 
-- Inport files with financial data into the database.
+- Import files with financial data into the database.
 - Integrate with external API to fetch market data.
 
 ## Installation

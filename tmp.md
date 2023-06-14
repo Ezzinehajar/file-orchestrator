@@ -1,0 +1,67 @@
+# Keywords to be read
+
+Spring
+
+	- Injection dependencies and reflection
+	- @RestController, @Service (@Component), @Repositpry
+
+Microservice
+
+	- RESTful API : is an interface that two computer systems use to exchange information securely over the internet.
+		- methods
+			- GET :Retrieve a list of items 
+			- POST : Create an item 
+			- PUT : Update an item
+			- etc
+		
+		- response code
+			- 20X
+			- 30X
+			- 40X
+			- 50X 
+	
+	- JSON	
+
+	- DTO vs BEAN vs POJO vs Entity
+
+
+
+= = = =
+
+- Change the POST endpoint to receive a body parameter
+	- create the "parameter" class 
+	- add as a parameter in the method using annotation
+
+- reuse the "name builder logic" on both GET and POST endpoints
+
+- how to create Service in Spring 	
+
+# What is missing
+- complete the changelog file (create table shortSell.....)
+- push changes in git 
+-Create Integration Test
+- git :
+	- staging
+	- commit (message)
+	- push to remote 
+
+
+# What i did 
+
+	12/06
+		- configuration of liquibase and h2 data (dependecies)
+		- Create two JPA entity classes: Process and ShortSellingEligibleSecurity. These entities will represent the tables in the database.
+		- started to create a endpoint 
+		-started to complete the file changelog 
+
+	13/06
+		- List the Process challenge 			1§
+			- List the Process table with an endpoint
+				- create an endpoint to list the Processes (GET)
+					- Path: '/api/v1/process'
+				- create a method in order to list the existing Processes (method to fetch the data from the repository)
+		
+	
+		
+		
+	
