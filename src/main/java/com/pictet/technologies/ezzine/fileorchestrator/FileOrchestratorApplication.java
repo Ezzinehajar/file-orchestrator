@@ -8,6 +8,9 @@ public class FileOrchestratorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FileOrchestratorApplication.class, args);
+
+		
+        
 	}
 
 }

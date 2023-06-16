@@ -42,6 +42,7 @@ public class HelloController {
 			.orElse(HELLO);
 	}
 	
+	
 	private String buildHelloMessage(String name) {
 		if (StringUtils.isNotBlank(name)) {
 			return "Hello, " + name + "!";

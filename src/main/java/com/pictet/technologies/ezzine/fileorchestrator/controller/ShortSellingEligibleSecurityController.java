@@ -21,7 +21,7 @@ public class ShortSellingEligibleSecurityController {
 	public void importShortSellingEligibleSecurities(@RequestParam("file") MultipartFile file) {
 		this.service.importShortSellingEligibleSecurities(file);
 		
-		System.out.println("ok");
+		System.out.println("ok"); 
 
 	}
 }

@@ -36,14 +36,8 @@ Microservice
 
 - how to create Service in Spring 	
 
-# What is missing
-- complete the changelog file (create table shortSell.....)
-- push changes in git 
--Create Integration Test
-- git :
-	- staging
-	- commit (message)
-	- push to remote 
+
+	
 
 
 # What i did 
@@ -61,7 +55,17 @@ Microservice
 					- Path: '/api/v1/process'
 				- create a method in order to list the existing Processes (method to fetch the data from the repository)
 		
-	
-		
+	12/06
+	-git: 
+	- staging
+	- commit (message)
+	- push to remote 
+     -started to convert the filr
+     13/06:
+     -convert lines to object and save data 
+     
+     15/06
+     	- skip/jump the first 5 lines
+     	- read the array to fill each field on the ShortSellingEligibleSecurityEntity
 		
 	
