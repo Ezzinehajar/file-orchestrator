@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class ProcessEntity {
 
 	@Id

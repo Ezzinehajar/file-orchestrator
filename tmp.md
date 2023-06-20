@@ -60,12 +60,17 @@ Microservice
 	- staging
 	- commit (message)
 	- push to remote 
-     -started to convert the filr
+     -started to convert the file
      13/06:
      -convert lines to object and save data 
      
      15/06
      	- skip/jump the first 5 lines
      	- read the array to fill each field on the ShortSellingEligibleSecurityEntity
+    	16/06
+    -finished the read file csv 
+    -started the part of integration test 
+    19/06  
+    -doing the integration test 
 		
 	
