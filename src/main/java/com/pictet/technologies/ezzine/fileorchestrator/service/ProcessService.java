@@ -10,29 +10,23 @@ import com.pictet.technologies.ezzine.fileorchestrator.repository.ProcessReposit
 
 @Service
 public class ProcessService {
-	
-	private final ProcessRepository repository; 
-	
+
+	private final ProcessRepository repository;
+
 	public ProcessService(ProcessRepository repository) {
 		this.repository = repository;
 	}
-	
-    // start process
+
 	public ProcessEntity startProcess(String filename) {
-		var  process = ProcessEntity.builder()
-				.fileName(filename)
-				.startedAt(LocalDateTime.now())
-				.build();
-		
+		var process = ProcessEntity.builder().fileName(filename).startedAt(LocalDateTime.now()).build();
+
 		return repository.save(process);
 	}
-	
-	 //methode for fetch process
+
 	public List<ProcessEntity> fetchProcess() {
 		return repository.findAll();
-		
+
 	}
-	// end process
 
 	public void endProcess(ProcessEntity process) {
 		process.setFinishedAt(LocalDateTime.now());

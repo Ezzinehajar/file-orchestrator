@@ -20,6 +20,6 @@
 
 
 	<include file="short_selling_eligible_security.sql"
-	relativeToChangelogFile="true" />
+		relativeToChangelogFile="true" />
 
 </databaseChangeLog>

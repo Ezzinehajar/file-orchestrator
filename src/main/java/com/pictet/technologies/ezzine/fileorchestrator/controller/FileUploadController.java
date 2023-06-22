@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FileUploadController {
-	
+
 	@PostMapping(path = "/file-upload")
-	public String text(@RequestBody(required = false) ParametreDTO parametre) {		
+	public String text(@RequestBody(required = false) ParametreDTO parametre) {
 		return null;
 	}
-	
+
 }

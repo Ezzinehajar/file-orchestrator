@@ -72,5 +72,7 @@ Microservice
     -started the part of integration test 
     19/06  
     -doing the integration test 
+    20 a 22
+    -finished integration test 
 		
 	

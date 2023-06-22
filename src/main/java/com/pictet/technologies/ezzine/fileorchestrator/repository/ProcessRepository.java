@@ -7,6 +7,5 @@ import com.pictet.technologies.ezzine.fileorchestrator.domain.ProcessEntity;
 
 @Repository
 public interface ProcessRepository extends JpaRepository<ProcessEntity, Long> {
-	
-	
+
 }

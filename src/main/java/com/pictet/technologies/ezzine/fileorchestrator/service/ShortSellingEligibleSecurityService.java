@@ -20,19 +20,18 @@ import java.util.List;
 public class ShortSellingEligibleSecurityService {
 
 	private final ProcessService processService;
+
 	private final ShortSellingEligibleSecurityRepository srepository;
 
 	public void importShortSellingEligibleSecurities(MultipartFile file) {
-		// starts process
+
 		var processEntity = this.processService.startProcess(file.getOriginalFilename());
 
 		List<ShortSellingEligibleSecurityEntity> objects = new ArrayList<>();
-		
-		// read line by line
+
 		try (CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(file.getInputStream())))) {
 
 			String[] nextLine;
-			// Read one line at a time
 
 			var index = 0;
 			while ((nextLine = reader.readNext()) != null) {
@@ -59,7 +58,7 @@ public class ShortSellingEligibleSecurityService {
 		}
 
 		srepository.saveAll(objects);
- 
+
 		this.processService.endProcess(processEntity);
 
 		System.out.println("ok service");

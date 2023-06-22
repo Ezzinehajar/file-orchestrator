@@ -65,12 +65,11 @@ public class ProcessServiceTest {
 
 	@Test
 	public void testEndProcess() {
-		// LocalDateTime finishDateTime = LocalDateTime.now();
 
 		var processEntity = new ProcessEntity();
 
 		processService.endProcess(processEntity);
-	//	verify(processEntity).setFinishedAt(any(LocalDateTime.class));
+		// verify(processEntity).setFinishedAt(any(LocalDateTime.class));
 		verify(repository, times(1)).save(any(ProcessEntity.class));
 
 	}

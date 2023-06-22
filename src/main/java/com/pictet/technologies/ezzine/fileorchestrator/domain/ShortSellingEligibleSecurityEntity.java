@@ -12,7 +12,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-
 @Entity
 @Table(name = "short_selling_eligible_security")
 @Data
@@ -46,9 +45,8 @@ public class ShortSellingEligibleSecurityEntity {
 	@Column(name = "remarks")
 	private String remarks;
 
-
 	@ManyToOne
-    @JoinColumn(name = "process_id")
-   private ProcessEntity process;
+	@JoinColumn(name = "process_id")
+	private ProcessEntity process;
 
 }

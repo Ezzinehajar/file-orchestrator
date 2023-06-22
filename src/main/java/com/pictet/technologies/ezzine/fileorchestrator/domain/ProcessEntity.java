@@ -17,7 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name ="PROCESS")
+@Table(name = "PROCESS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,9 +37,8 @@ public class ProcessEntity {
 
 	@Column(name = "finished_at")
 	private LocalDateTime finishedAt;
-	
-	@OneToMany
-	private List<ShortSellingEligibleSecurityEntity> securities ;
 
+	@OneToMany
+	private List<ShortSellingEligibleSecurityEntity> securities;
 
 }
