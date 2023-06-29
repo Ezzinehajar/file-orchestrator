@@ -6,26 +6,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pictet.technologies.ezzine.fileorchestrator.service.ShortSellingEligibleSecurityService;
+import com.pictet.technologies.ezzine.fileorchestrator.service.UkListOfExemptedSharesService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/v1/short-selling-eligible-securities")
-
 @AllArgsConstructor
-public class ShortSellingEligibleSecurityController {
+@RequestMapping("/api/v1/uk-list-exempted-shares")
 
-	private final ShortSellingEligibleSecurityService service;
+public class UkListOfExemptedSharesController {
+
+	private final UkListOfExemptedSharesService service;
 
 	@PostMapping
-	public void importShortSellingEligibleSecurities(@RequestParam("file") MultipartFile file) {
-		this.service.importShortSellingEligibleSecurities(file);
-		System.out.println("ok");
-		
+	public void importUkListExemptedShares(@RequestParam("file") MultipartFile file) {
+		this.service.importUkListOfExemptedShares(file);
+
+		System.out.println("file imported successfully ");
 
 	}
 
-
 }
-

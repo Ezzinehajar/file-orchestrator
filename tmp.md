@@ -22,7 +22,7 @@ Microservice
 	
 	- JSON	
 
-	- DTO vs BEAN vs POJO vs Entity
+	- DTO vs BEAN vs POJO vs Entity7
 
 
 
@@ -74,5 +74,29 @@ Microservice
     -doing the integration test 
     20 a 22
     -finished integration test 
-		
+    
+    26/06
+    -started Import file - "UK list of exempted shares"
+    -created a second endpoint post
+    
+    29/06
+    - we need to validate the UK Entity persistence using the UkListOfExemptedSharesService (hint: follow the ShortSellingEligibleSecurityService)
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 	
