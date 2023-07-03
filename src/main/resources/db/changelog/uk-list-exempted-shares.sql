@@ -2,9 +2,9 @@
 --changeset hezzine:create-ISSUER-table splitStatements:true endDelimiter:;
 CREATE TABLE ISSUER
 (
-   ISIN VARCHAR (255) PRIMARY KEY,
+   ISIN VARCHAR (255) PRIMARY KEY  ,
    NAME VARCHAR (255) NOT NULL,
-   DATE_ADDED DATE
+   DATE_ADDED DATE 
 );
 --changeset hezzine:create-UK_LIST_OF_EXEMPTED_SHARES-table splitStatements:true endDelimiter:;
 CREATE TABLE UK_LIST_OF_EXEMPTED_SHARES

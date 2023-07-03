@@ -63,23 +63,10 @@ public class ShortSellingEligibleSecurityService {
 		this.processService.endProcess(processEntity);
 
 		System.out.println("ok service");
+		
+		
 	}
 
-//	public void importUkListOfExemptedShares(MultipartFile file) {
-//		final String FilePath = "Downloads/uk-list-exempted-shares.xlsx";
-//		var processEntity = this.processService.startProcess(file.getOriginalFilename());
-//		
-//		try {
-//			Workbook workbook = WorkbookFactory.create(new FileInputStream(FilePath));
-//			
-//			XSSFSheet sheet =work.getSheet("");
-//			XSFFRow 
-//		} catch (InvalidFormatException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
+
 
 }

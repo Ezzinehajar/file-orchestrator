@@ -1,5 +1,7 @@
 package com.pictet.technologies.ezzine.fileorchestrator.controller;
 
+import java.io.IOException;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +21,7 @@ public class UkListOfExemptedSharesController {
 	private final UkListOfExemptedSharesService service;
 
 	@PostMapping
-	public void importUkListExemptedShares(@RequestParam("file") MultipartFile file) {
+	public void importUkListExemptedShares(@RequestParam("file") MultipartFile file) throws IOException {
 		this.service.importUkListOfExemptedShares(file);
 
 		System.out.println("file imported successfully ");

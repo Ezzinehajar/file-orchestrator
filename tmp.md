@@ -23,6 +23,9 @@ Microservice
 	- JSON	
 
 	- DTO vs BEAN vs POJO vs Entity7
+	
+	
+	-Workbook: 
 
 
 
