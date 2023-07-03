@@ -38,7 +38,6 @@ public class ProcessEntity {
 	@Column(name = "finished_at")
 	private LocalDateTime finishedAt;
 
-	@OneToMany
-	private List<ShortSellingEligibleSecurityEntity> securities;
+
 
 }

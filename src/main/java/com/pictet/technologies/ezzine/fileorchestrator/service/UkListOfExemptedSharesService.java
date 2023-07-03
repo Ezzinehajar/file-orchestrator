@@ -66,7 +66,7 @@ public class UkListOfExemptedSharesService {
 		repository.saveAll(issuerEntities);
 		
 		
-		processService.endProcess(processEntity);
+		this.processService.endProcess(processEntity);
 
 	}
 
