@@ -5,8 +5,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,21 +14,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pictet.technologies.ezzine.fileorchestrator.domain.IssuerEntity;
-import com.pictet.technologies.ezzine.fileorchestrator.domain.UkListOfExemptedSharesEntity;
 import com.pictet.technologies.ezzine.fileorchestrator.repository.IssuerRepository;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-
 public class UkListOfExemptedSharesService {
 
 	private final ProcessService processService;
 	private final IssuerRepository repository;
 
 	public void importUkListOfExemptedShares(MultipartFile file) throws IOException {
-
 		var processEntity = this.processService.startProcess(file.getOriginalFilename());
 		List<IssuerEntity> issuerEntities = new ArrayList<>();
 
@@ -41,7 +36,6 @@ public class UkListOfExemptedSharesService {
 		readHeader(iterator);
 
 		while (iterator.hasNext()) {
-
 			Row row = iterator.next();
 			Cell isinCell = row.getCell(0);
 			Cell nameCell = row.getCell(1);
@@ -59,15 +53,12 @@ public class UkListOfExemptedSharesService {
 						.build();
 				
 				issuerEntities.add(entity);
-
 			}
 		}
 
 		repository.saveAll(issuerEntities);
 		
-		
 		this.processService.endProcess(processEntity);
-
 	}
 
 	private Date convertToDate(java.util.Date dateSQL) {
@@ -79,7 +70,4 @@ public class UkListOfExemptedSharesService {
 			iterator.next();
 		}
 	}
-	
-
-	
 }

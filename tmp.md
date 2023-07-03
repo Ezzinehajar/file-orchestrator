@@ -86,7 +86,12 @@ Microservice
     - we need to validate the UK Entity persistence using the UkListOfExemptedSharesService (hint: follow the ShortSellingEligibleSecurityService)
    
    
-   
+   03/03
+   	- Java features
+   		- record (https://www.baeldung.com/java-record-keyword)
+   		- stream (https://www.baeldung.com/java-8-streams)
+   		- @Slf4j to replace "System.out"
+   		- Avoid magic numbers adding constants
    
    
    

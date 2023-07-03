@@ -1,6 +1,5 @@
 package com.pictet.technologies.ezzine.fileorchestrator.service;
 
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -12,31 +11,33 @@ import com.pictet.technologies.ezzine.fileorchestrator.repository.ShortSellingEl
 
 import liquibase.util.csv.CSVReader;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class ShortSellingEligibleSecurityService {
+	
+	private static final int SKIP_HEADER_LINES = 5;
 
 	private final ProcessService processService;
 
-	private final ShortSellingEligibleSecurityRepository srepository;
+	private final ShortSellingEligibleSecurityRepository repository;
 
 	public void importShortSellingEligibleSecurities(MultipartFile file) {
-
-		var processEntity = this.processService.startProcess(file.getOriginalFilename());
-
 		List<ShortSellingEligibleSecurityEntity> objects = new ArrayList<>();
-
+		
+		var processEntity = this.processService.startProcess(file.getOriginalFilename());
+		
 		try (CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(file.getInputStream())))) {
-
 			String[] nextLine;
 
 			var index = 0;
 			while ((nextLine = reader.readNext()) != null) {
-				if (index >= 5) {
+				if (index >= SKIP_HEADER_LINES) {
 					ShortSellingEligibleSecurityEntity obj = new ShortSellingEligibleSecurityEntity();
 					obj.setRowNumber(Integer.valueOf(nextLine[0]));
 					obj.setStockCode(nextLine[1]);
@@ -46,27 +47,22 @@ public class ShortSellingEligibleSecurityService {
 					obj.setExemptFromTickRule(nextLine[5]);
 					obj.setRemarks(nextLine[6]);
 					obj.setProcess(processEntity);
-					System.out.println(obj);
+					
+					log.debug(obj.toString());
 
 					objects.add(obj);
 				}
 
 				index += 1;
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		srepository.saveAll(objects);
+		repository.saveAll(objects);
 
 		this.processService.endProcess(processEntity);
 
-		System.out.println("ok service");
-		
-		
+		log.info("ok service");
 	}
-
-
-
 }

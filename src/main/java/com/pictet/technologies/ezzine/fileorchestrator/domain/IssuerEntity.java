@@ -11,13 +11,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name ="ISSUER")
+@Table(name = "ISSUER")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class IssuerEntity {
-
 	@Id
 	@Column(name = "Isin")
 	private String isin;
@@ -27,5 +26,4 @@ public class IssuerEntity {
 
 	@Column(name = "DATE_ADDED")
 	private Date date;
-
 }

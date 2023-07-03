@@ -11,11 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pictet.technologies.ezzine.fileorchestrator.service.UkListOfExemptedSharesService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/uk-list-exempted-shares")
-
+@Slf4j
 public class UkListOfExemptedSharesController {
 
 	private final UkListOfExemptedSharesService service;
@@ -24,8 +25,6 @@ public class UkListOfExemptedSharesController {
 	public void importUkListExemptedShares(@RequestParam("file") MultipartFile file) throws IOException {
 		this.service.importUkListOfExemptedShares(file);
 
-		System.out.println("file imported successfully ");
-
+		log.info("file imported successfully ");
 	}
-
 }

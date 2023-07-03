@@ -18,14 +18,16 @@ public class ProcessService {
 	}
 
 	public ProcessEntity startProcess(String filename) {
-		var process = ProcessEntity.builder().fileName(filename).startedAt(LocalDateTime.now()).build();
+		var process = ProcessEntity.builder()
+				.fileName(filename)
+				.startedAt(LocalDateTime.now())
+				.build();
 
 		return repository.save(process);
 	}
 
 	public List<ProcessEntity> fetchProcess() {
 		return repository.findAll();
-
 	}
 
 	public void endProcess(ProcessEntity process) {
