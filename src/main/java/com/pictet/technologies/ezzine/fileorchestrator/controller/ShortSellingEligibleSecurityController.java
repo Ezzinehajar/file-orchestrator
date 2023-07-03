@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/short-selling-eligible-securities")
+
 @AllArgsConstructor
 public class ShortSellingEligibleSecurityController {
 
@@ -20,8 +21,11 @@ public class ShortSellingEligibleSecurityController {
 	@PostMapping
 	public void importShortSellingEligibleSecurities(@RequestParam("file") MultipartFile file) {
 		this.service.importShortSellingEligibleSecurities(file);
-
 		System.out.println("ok");
+		
 
 	}
+
+
 }
+
