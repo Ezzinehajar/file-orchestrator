@@ -1,13 +1,12 @@
 package com.pictet.technologies.ezzine.fileorchestrator.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import com.pictet.technologies.ezzine.fileorchestrator.controller.dto.ProcessDTO;
-import org.springframework.stereotype.Service;
-
 import com.pictet.technologies.ezzine.fileorchestrator.domain.ProcessEntity;
 import com.pictet.technologies.ezzine.fileorchestrator.repository.ProcessRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ProcessService {

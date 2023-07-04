@@ -1,19 +1,19 @@
 package com.pictet.technologies.ezzine.fileorchestrator.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
+import com.pictet.technologies.ezzine.fileorchestrator.domain.ProcessEntity;
+import com.pictet.technologies.ezzine.fileorchestrator.repository.ProcessRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import com.pictet.technologies.ezzine.fileorchestrator.domain.ProcessEntity;
-import com.pictet.technologies.ezzine.fileorchestrator.repository.ProcessRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class ProcessServiceTest {
 
@@ -74,4 +74,41 @@ public class ProcessServiceTest {
 
 	}
 
+	@Test
+	void returns_processes_in_progress() {
+		when(this.repository.findAll())
+				.thenReturn(List.of(
+						ProcessEntity.builder()
+								.id(1L)
+								.finishedAt(LocalDateTime.now())
+								.build(),
+						ProcessEntity.builder()
+								.id(2L)
+								.finishedAt(null)
+								.build()
+				));
+
+		var result = this.processService.fetchProcessInProgress();
+
+		assertThat(result)
+				.usingRecursiveComparison()
+				.isEqualTo(List.of(
+						ProcessEntity.builder()
+								.id(2L)
+								.finishedAt(null)
+								.build()));
+	}
+
+	@Test
+	void returns_processes_in_progress_when_process_table_is_empty() {
+		when(this.repository.findAll())
+				.thenReturn(List.of());
+
+		var result = this.processService.fetchProcessInProgress();
+
+		assertTrue(result.isEmpty());
+		assertThat(result)
+				.usingRecursiveComparison()
+				.isEqualTo(List.of());
+	}
 }
