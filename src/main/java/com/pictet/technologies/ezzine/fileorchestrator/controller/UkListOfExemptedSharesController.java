@@ -1,17 +1,15 @@
 package com.pictet.technologies.ezzine.fileorchestrator.controller;
 
-import java.io.IOException;
-
+import com.pictet.technologies.ezzine.fileorchestrator.service.Issuer;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pictet.technologies.ezzine.fileorchestrator.service.UkListOfExemptedSharesService;
-
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
 
 @RestController
 @AllArgsConstructor
@@ -19,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UkListOfExemptedSharesController {
 
-	private final UkListOfExemptedSharesService service;
+	private final Issuer service;
 
 	@PostMapping
 	public void importUkListExemptedShares(@RequestParam("file") MultipartFile file) throws IOException {

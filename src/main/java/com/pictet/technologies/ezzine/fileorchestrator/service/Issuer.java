@@ -1,10 +1,8 @@
 package com.pictet.technologies.ezzine.fileorchestrator.service;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.pictet.technologies.ezzine.fileorchestrator.domain.IssuerEntity;
+import com.pictet.technologies.ezzine.fileorchestrator.repository.IssuerRepository;
+import lombok.AllArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -13,14 +11,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pictet.technologies.ezzine.fileorchestrator.domain.IssuerEntity;
-import com.pictet.technologies.ezzine.fileorchestrator.repository.IssuerRepository;
-
-import lombok.AllArgsConstructor;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class UkListOfExemptedSharesService {
+public class Issuer {
 
 	private final ProcessService processService;
 	private final IssuerRepository repository;
