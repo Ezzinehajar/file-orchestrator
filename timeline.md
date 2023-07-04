@@ -27,6 +27,9 @@
 ## Classes Organization
 - DTO vs BEAN vs POJO vs Entity (https://www.baeldung.com/java-pojo-javabeans-dto-vo)
 
+## Git
+- How to good commit messages: https://cbea.ms/git-commit/#seven-rules
+
 ## Lombok
 - @Data
 - @Builder
@@ -82,9 +85,12 @@
 - we need to validate the UK Entity persistence using the UkListOfExemptedSharesService (hint: follow the ShortSellingEligibleSecurityService)
 
 ## 03/07
+- #14 Expose Processes (in-progress)
 - Java features
-	- record (https://www.baeldung.com/java-record-keyword)
-    - stream (https://www.baeldung.com/java-8-streams)
+	- Record (https://www.baeldung.com/java-record-keyword)
+    - Stream (https://www.baeldung.com/java-8-streams)
+      - .map
+      - .toList
 - Coding/Refactoring    
   - Avoid magic numbers adding constants
 - Lombok
@@ -92,10 +98,15 @@
   - @Slf4j to replace "System.out"
 
 ## 04/07
+- Import the UkListOfExemptedShares data
+- Java 
+  - features
+      - .filter
+  - Collections
+      - Map
+      
+## 05/07
+- #15 Expose Issuer
 - Collections 
   - List
   - Set
-
-## 05/07
-- Collections
-	- Map
