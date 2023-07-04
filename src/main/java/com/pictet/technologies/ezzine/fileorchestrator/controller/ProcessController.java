@@ -1,18 +1,16 @@
 package com.pictet.technologies.ezzine.fileorchestrator.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.pictet.technologies.ezzine.fileorchestrator.controller.dto.ProcessDTO;
+import com.pictet.technologies.ezzine.fileorchestrator.domain.ProcessEntity;
+import com.pictet.technologies.ezzine.fileorchestrator.service.ProcessService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pictet.technologies.ezzine.fileorchestrator.controller.dto.ProcessDTO;
-import com.pictet.technologies.ezzine.fileorchestrator.domain.ProcessEntity;
-import com.pictet.technologies.ezzine.fileorchestrator.service.ProcessService;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/process")
@@ -29,14 +27,18 @@ public class ProcessController {
 		var entities = processservice.fetchProcess();
 		for (ProcessEntity entity : entities) {
 			var dto = new ProcessDTO(
-					entity.getFileName(), 
+					entity.getFileName(),
 					entity.getStartedAt(),
 					entity.getFinishedAt());
 
 			processes.add(dto);
-
 		}
 
 		return processes;
+	}
+
+	@GetMapping(path = "/in-progress")
+	public List<ProcessDTO> getProcessWithStream() {
+		return processservice.fetchProcessInProgress();
 	}
 }

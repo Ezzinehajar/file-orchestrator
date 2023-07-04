@@ -3,6 +3,7 @@ package com.pictet.technologies.ezzine.fileorchestrator.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.pictet.technologies.ezzine.fileorchestrator.controller.dto.ProcessDTO;
 import org.springframework.stereotype.Service;
 
 import com.pictet.technologies.ezzine.fileorchestrator.domain.ProcessEntity;
@@ -33,5 +34,24 @@ public class ProcessService {
 	public void endProcess(ProcessEntity process) {
 		process.setFinishedAt(LocalDateTime.now());
 		repository.save(process);
+	}
+
+	public List<ProcessDTO> fetchProcessInProgress(){
+		var entities = repository.findAll();
+
+		var processes = entities.stream()
+				.filter(entity -> entity.getFinishedAt() == null)
+				.map(this::convert)
+				.toList();
+
+		return processes;
+	}
+
+	private ProcessDTO convert(ProcessEntity entity) {
+		ProcessDTO dto = new ProcessDTO(
+				entity.getFileName(),
+				entity.getStartedAt(),
+				entity.getFinishedAt());
+		return dto;
 	}
 }
