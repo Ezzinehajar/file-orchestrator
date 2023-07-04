@@ -5,7 +5,7 @@ Spring
 	- Injection dependencies and reflection
 	- @RestController, @Service (@Component), @Repositpry
 
-Microservice
+Microservice : is an architecture for applications that separates an application into several small autonomous web services.
 
 	- RESTful API : is an interface that two computer systems use to exchange information securely over the internet.
 		- methods
@@ -22,37 +22,18 @@ Microservice
 	
 	- JSON	
 
-	- DTO vs BEAN vs POJO vs Entity7
-	
-	
-	-Workbook: 
+	- DTO vs BEAN vs POJO vs Entity
 
+# Timeline :: What I did 
 
+## 12/06
+- configuration of liquibase and h2 data (dependecies)
+- Create two JPA entity classes: Process and ShortSellingEligibleSecurity. These entities will represent the tables in the database.
+- started to create a endpoint 
+- started to complete the file changelog 
 
-= = = =
-
-- Change the POST endpoint to receive a body parameter
-	- create the "parameter" class 
-	- add as a parameter in the method using annotation
-
-- reuse the "name builder logic" on both GET and POST endpoints
-
-- how to create Service in Spring 	
-
-
-	
-
-
-# What i did 
-
-	12/06
-		- configuration of liquibase and h2 data (dependecies)
-		- Create two JPA entity classes: Process and ShortSellingEligibleSecurity. These entities will represent the tables in the database.
-		- started to create a endpoint 
-		-started to complete the file changelog 
-
-	13/06
-		- List the Process challenge 			1§
+## 13/06
+		- List the Process challenge 			
 			- List the Process table with an endpoint
 				- create an endpoint to list the Processes (GET)
 					- Path: '/api/v1/process'
@@ -63,19 +44,22 @@ Microservice
 	- staging
 	- commit (message)
 	- push to remote 
-     -started to convert the file
+     -started to convert the file csv
+     
      13/06:
      -convert lines to object and save data 
      
      15/06
      	- skip/jump the first 5 lines
      	- read the array to fill each field on the ShortSellingEligibleSecurityEntity
-    	16/06
+     	
+    	16/06	
     -finished the read file csv 
     -started the part of integration test 
     19/06  
     -doing the integration test 
-    20 a 22
+    
+    20-22
     -finished integration test 
     
     26/06
@@ -84,27 +68,10 @@ Microservice
     
     29/06
     - we need to validate the UK Entity persistence using the UkListOfExemptedSharesService (hint: follow the ShortSellingEligibleSecurityService)
-   
-   
+
    03/03
    	- Java features
    		- record (https://www.baeldung.com/java-record-keyword)
    		- stream (https://www.baeldung.com/java-8-streams)
    		- @Slf4j to replace "System.out"
    		- Avoid magic numbers adding constants
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-	
