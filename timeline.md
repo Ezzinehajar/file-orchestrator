@@ -1,6 +1,13 @@
 # Keywords to be read
 
+## Java
+
+- Collection:
+  - https://www.baeldung.com/java-choose-list-set-queue-map
+  - https://www.geeksforgeeks.org/difference-between-list-set-and-map-in-java/
+
 ## Spring
+
 - What is?
 - Injection dependencies and reflection
 - Annotations
