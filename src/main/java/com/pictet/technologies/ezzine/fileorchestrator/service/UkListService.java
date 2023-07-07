@@ -26,6 +26,22 @@ public class UkListService {
     private final ProcessService processService;
     private final IssuerRepository issuerRepository;
     private final UkListOfExemptedSharesRepository ukListRepository;
+    private static final int sheetOfIssuer = 1;
+    private static final int columnIndexIsin = 0;
+    private static final int columnIndexName = 1;
+    private static final int columnIndexDate = 2;
+    private static final int sheetOfUkList = 2;
+    private static final int columnIndexRoot = 0;
+    private static final int columnIndexIsinOfIssuer = 1;
+    private static final int columnIndexCountryCode = 2;
+    private static final int columnIndexRelevantAuthority = 3;
+    private static final int columnModificationDate = 4;
+    private static final int columnVersion = 5;
+    private static final int columnName = 6;
+    private static final int columnExcelId = 8;
+    private static final int columnStatus = 9;
+    private static final int columnTimeStamp = 10;
+    private static final int columnExemptionStartDate = 11;
 
     public void importUkListOfExemptedShares(MultipartFile file) throws IOException {
         var processEntity = this.processService.startProcess(file.getOriginalFilename());
@@ -52,14 +68,15 @@ public class UkListService {
     public List<IssuerEntity> extractEntitiesOfIssuer(Workbook workbook) {
         List<IssuerEntity> issuerEntities = new ArrayList<>();
 
-        Sheet sheet = workbook.getSheetAt(1);
+        Sheet sheet = workbook.getSheetAt(sheetOfIssuer);
         Iterator<Row> iterator = sheet.rowIterator();
         readHeader(iterator);
+
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            Cell isinCell = row.getCell(0);
-            Cell nameCell = row.getCell(1);
-            Cell dateCell = row.getCell(2);
+            Cell isinCell = row.getCell(columnIndexIsin);
+            Cell nameCell = row.getCell(columnIndexName);
+            Cell dateCell = row.getCell(columnIndexDate);
             if (isinCell != null) {
                 var isin = isinCell.getStringCellValue();
                 var name = nameCell.getStringCellValue();
@@ -86,22 +103,23 @@ public class UkListService {
             issuerByIsin.put(issuerEntity.getIsin(), issuerEntity);
         }
 
-        Sheet sheet = workbook.getSheetAt(2);
+        Sheet sheet = workbook.getSheetAt(sheetOfUkList);
         Iterator<Row> iterator = sheet.rowIterator();
         readHeader(iterator);
+
         while (iterator.hasNext()) {
             Row row = iterator.next();
-            var rootCell = row.getCell(0);
-            var isinCell = row.getCell(1);
-            var countryCodeCell = row.getCell(2);
-            var relevantAuthorityCell = row.getCell(3);
-            var modificationDateStrCell = row.getCell(4);
-            var versionCell = row.getCell(5);
-            var nameCell = row.getCell(6);
-            var excelIdCell = row.getCell(8);
-            var statusCell = row.getCell(9);
-            var timeStampCell = row.getCell(10);
-            var exemptionStartDateCell = row.getCell(11);
+            var rootCell = row.getCell(columnIndexRoot);
+            var isinCell = row.getCell(columnIndexIsinOfIssuer);
+            var countryCodeCell = row.getCell(columnIndexCountryCode);
+            var relevantAuthorityCell = row.getCell(columnIndexRelevantAuthority);
+            var modificationDateStrCell = row.getCell(columnModificationDate);
+            var versionCell = row.getCell(columnVersion);
+            var nameCell = row.getCell(columnName);
+            var excelIdCell = row.getCell(columnExcelId);
+            var statusCell = row.getCell(columnStatus);
+            var timeStampCell = row.getCell(columnTimeStamp);
+            var exemptionStartDateCell = row.getCell(columnExemptionStartDate);
 
             if (rootCell != null) {
                 var root = rootCell.getNumericCellValue();
