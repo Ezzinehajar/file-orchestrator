@@ -24,7 +24,7 @@ public class UkListOfExemptedSharesEntity {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "EXCEL_ID")
-	private String EXCEL_ID;
+	private String excelId;
 
 	@Column(name = "root")
 	private int root;

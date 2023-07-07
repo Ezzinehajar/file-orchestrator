@@ -24,9 +24,10 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class UkListService {
+
     private final ProcessService processService;
     private final IssuerRepository repository;
-    private final UkListOfExemptedSharesRepository UkListRepository;
+    private final UkListOfExemptedSharesRepository ukListRepository;
 
     public void importUkListOfExemptedShares(MultipartFile file) throws IOException {
         var processEntity = this.processService.startProcess(file.getOriginalFilename());
@@ -36,16 +37,18 @@ public class UkListService {
         extractEntitiesOfUkList(workbook, issuers, processEntity);
         //this.processService.endProcess(processEntity);
     }
+
     private void readHeader(Iterator<Row> iterator) {
         if (iterator.hasNext()) {
             iterator.next();
         }
     }
+
     private LocalDateTime convertToLocalDateTime(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss[.SSS]z");
-        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
-        return dateTime;
+        return LocalDateTime.parse(date, formatter);
     }
+
     public void extractEntitiesOfIssuer(Workbook workbook) {
         List<IssuerEntity> issuerEntities = new ArrayList<>();
         Sheet sheet = workbook.getSheetAt(1);
@@ -70,6 +73,7 @@ public class UkListService {
         }
         repository.saveAll(issuerEntities);
     }
+
     public void extractEntitiesOfUkList(Workbook workbook, List<IssuerEntity> issuers, ProcessEntity processEntity) {
         List<UkListOfExemptedSharesEntity> ukListEntities = new ArrayList<>();
         Sheet sheet = workbook.getSheetAt(2);
@@ -88,7 +92,6 @@ public class UkListService {
             var statusCell = row.getCell(9);
             var timeStampCell = row.getCell(10);
             var exemptionStartDateCell = row.getCell(11);
-            var processIdCell = row.getCell(12);
 
             if (rootCell != null) {
                 var root = rootCell.getNumericCellValue();
@@ -98,7 +101,7 @@ public class UkListService {
                 var modificationDateStr = modificationDateStrCell.getLocalDateTimeCellValue().toLocalDate();
                 var version = versionCell.getNumericCellValue();
                 var name = nameCell.getStringCellValue();
-                var ExcelId = excelIdCell.getStringCellValue();
+                var excelId = excelIdCell.getStringCellValue();
                 var status = statusCell.getStringCellValue();
                 var timeStamp = timeStampCell.getLocalDateTimeCellValue().toLocalDate();
                 var exemptionStartDateStr = convertToLocalDateTime(exemptionStartDateCell.getStringCellValue());
@@ -111,7 +114,7 @@ public class UkListService {
                         .modificationDateStr(modificationDateStr)
                         .version((long) version)
                         .name(name)
-                        .EXCEL_ID(String.valueOf(excelIdCell))
+                        .excelId(excelId)
                         .status(status)
                         .timestamp(timeStamp)
                         .exemptionStartDateStr(exemptionStartDateStr)
@@ -120,7 +123,7 @@ public class UkListService {
                 ukListEntities.add(entityOfUkList);
             }
         }
-        UkListRepository.saveAll(ukListEntities);
+        ukListRepository.saveAll(ukListEntities);
     }
 }
 
