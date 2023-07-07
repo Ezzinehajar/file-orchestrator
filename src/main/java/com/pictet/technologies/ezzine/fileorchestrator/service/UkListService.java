@@ -34,21 +34,18 @@ public class UkListService {
         List<IssuerEntity> issuers = new ArrayList<>();
         extractEntitiesOfIssuer(workbook);
         extractEntitiesOfUkList(workbook, issuers, processEntity);
-        // this.processService.endProcess(processEntity);
+        //this.processService.endProcess(processEntity);
     }
-
     private void readHeader(Iterator<Row> iterator) {
         if (iterator.hasNext()) {
             iterator.next();
         }
     }
-
     private LocalDateTime convertToLocalDateTime(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss[.SSS]z");
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
         return dateTime;
     }
-
     public void extractEntitiesOfIssuer(Workbook workbook) {
         List<IssuerEntity> issuerEntities = new ArrayList<>();
         Sheet sheet = workbook.getSheetAt(1);
@@ -73,7 +70,6 @@ public class UkListService {
         }
         repository.saveAll(issuerEntities);
     }
-
     public void extractEntitiesOfUkList(Workbook workbook, List<IssuerEntity> issuers, ProcessEntity processEntity) {
         List<UkListOfExemptedSharesEntity> ukListEntities = new ArrayList<>();
         Sheet sheet = workbook.getSheetAt(2);
