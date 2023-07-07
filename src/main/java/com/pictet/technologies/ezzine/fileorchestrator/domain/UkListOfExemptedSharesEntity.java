@@ -31,7 +31,7 @@ public class UkListOfExemptedSharesEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "isin")
-	private IssuerEntity isin;
+	private IssuerEntity issuer;
 
 	@Column(name = "COUNTRY_CODE")
 	private String countryCode;

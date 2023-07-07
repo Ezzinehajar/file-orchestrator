@@ -17,25 +17,25 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class UkListService {
 
     private final ProcessService processService;
-    private final IssuerRepository repository;
+    private final IssuerRepository issuerRepository;
     private final UkListOfExemptedSharesRepository ukListRepository;
 
     public void importUkListOfExemptedShares(MultipartFile file) throws IOException {
         var processEntity = this.processService.startProcess(file.getOriginalFilename());
+
         Workbook workbook = new XSSFWorkbook(file.getInputStream());
-        List<IssuerEntity> issuers = new ArrayList<>();
-        extractEntitiesOfIssuer(workbook);
+
+        List<IssuerEntity> issuers = extractEntitiesOfIssuer(workbook);
         extractEntitiesOfUkList(workbook, issuers, processEntity);
-        //this.processService.endProcess(processEntity);
+
+        this.processService.endProcess(processEntity);
     }
 
     private void readHeader(Iterator<Row> iterator) {
@@ -49,8 +49,9 @@ public class UkListService {
         return LocalDateTime.parse(date, formatter);
     }
 
-    public void extractEntitiesOfIssuer(Workbook workbook) {
+    public List<IssuerEntity> extractEntitiesOfIssuer(Workbook workbook) {
         List<IssuerEntity> issuerEntities = new ArrayList<>();
+
         Sheet sheet = workbook.getSheetAt(1);
         Iterator<Row> iterator = sheet.rowIterator();
         readHeader(iterator);
@@ -71,11 +72,20 @@ public class UkListService {
                 issuerEntities.add(entity);
             }
         }
-        repository.saveAll(issuerEntities);
+
+        this.issuerRepository.saveAll(issuerEntities);
+
+        return issuerEntities;
     }
 
     public void extractEntitiesOfUkList(Workbook workbook, List<IssuerEntity> issuers, ProcessEntity processEntity) {
         List<UkListOfExemptedSharesEntity> ukListEntities = new ArrayList<>();
+
+        Map<String, IssuerEntity> issuerByIsin = new HashMap<>();
+        for (IssuerEntity issuerEntity : issuers) {
+            issuerByIsin.put(issuerEntity.getIsin(), issuerEntity);
+        }
+
         Sheet sheet = workbook.getSheetAt(2);
         Iterator<Row> iterator = sheet.rowIterator();
         readHeader(iterator);
@@ -108,7 +118,7 @@ public class UkListService {
 
                 var entityOfUkList = UkListOfExemptedSharesEntity.builder()
                         .root((int) root)
-                        // .isin(issuers.get(0)) //TODO rename isin field
+                        .issuer(issuerByIsin.get(isin))
                         .countryCode(countryCode)
                         .relevantAuthority(relevantAuthority)
                         .modificationDateStr(modificationDateStr)
@@ -123,8 +133,7 @@ public class UkListService {
                 ukListEntities.add(entityOfUkList);
             }
         }
-        ukListRepository.saveAll(ukListEntities);
+
+        this.ukListRepository.saveAll(ukListEntities);
     }
 }
-
-
