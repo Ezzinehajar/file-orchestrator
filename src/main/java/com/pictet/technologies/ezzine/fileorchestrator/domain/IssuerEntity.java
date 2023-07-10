@@ -1,6 +1,5 @@
 package com.pictet.technologies.ezzine.fileorchestrator.domain;
 
-import java.sql.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -9,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "ISSUER")
@@ -25,5 +26,5 @@ public class IssuerEntity {
 	private String name;
 
 	@Column(name = "DATE_ADDED")
-	private Date date;
+	private LocalDate date;
 }
