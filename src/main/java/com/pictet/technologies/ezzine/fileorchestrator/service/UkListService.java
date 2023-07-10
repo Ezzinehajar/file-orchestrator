@@ -91,7 +91,6 @@ public class UkListService {
         }
 
         this.issuerRepository.saveAll(issuerEntities);
-
         return issuerEntities;
     }
 
@@ -153,5 +152,9 @@ public class UkListService {
         }
 
         this.ukListRepository.saveAll(ukListEntities);
+    }
+
+    public List<IssuerEntity> getAllIssuers() {
+        return issuerRepository.findAll();
     }
 }

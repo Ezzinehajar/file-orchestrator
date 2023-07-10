@@ -16,7 +16,6 @@ import java.io.IOException;
 @RequestMapping("/api/v1/uk-list-exempted-shares")
 @Slf4j
 public class UkListOfExemptedSharesController {
-
 	private final UkListService service;
 
 	@PostMapping
