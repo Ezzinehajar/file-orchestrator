@@ -154,7 +154,5 @@ public class UkListService {
         this.ukListRepository.saveAll(ukListEntities);
     }
 
-    public List<IssuerEntity> getAllIssuers() {
-        return issuerRepository.findAll();
-    }
+
 }

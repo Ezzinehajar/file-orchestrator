@@ -1,7 +1,7 @@
 package com.pictet.technologies.ezzine.fileorchestrator.controller;
 
 import com.pictet.technologies.ezzine.fileorchestrator.domain.IssuerEntity;
-import com.pictet.technologies.ezzine.fileorchestrator.service.UkListService;
+import com.pictet.technologies.ezzine.fileorchestrator.service.IssuerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +14,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/issuer")
+@RequestMapping("/api/v1")
 @Slf4j
 public class IssuerController {
 
-    private final UkListService service;
+    private final IssuerService service;
 
-    @GetMapping
+    @GetMapping(path = "/issuer")
     public List<IssuerEntity> retrieveAllIssuer(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String isin,
@@ -59,6 +59,13 @@ public class IssuerController {
 //        }
 //        return true;
 //    }
+
+    @GetMapping(path = "/issuer/names")
+    public List<String> getNamesOfIssuers() {
+        return service.getAllIssuers().stream()
+                .map(IssuerEntity::getName)
+                .toList();
+    }
 }
 
 
