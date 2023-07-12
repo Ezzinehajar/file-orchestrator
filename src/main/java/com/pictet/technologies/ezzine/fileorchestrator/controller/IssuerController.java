@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -61,10 +62,8 @@ public class IssuerController {
 //    }
 
     @GetMapping(path = "/issuer/names")
-    public List<String> getNamesOfIssuers() {
-        return service.getAllIssuers().stream()
-                .map(IssuerEntity::getName)
-                .toList();
+    public Set<String> getNamesOfIssuers() {
+        return service.getNamesOfIssuers();
     }
 }
 

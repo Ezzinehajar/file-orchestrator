@@ -18,13 +18,11 @@ import static org.mockito.Mockito.*;
 public class ProcessServiceTest {
 
 	private ProcessRepository repository;
-
 	private ProcessService processService;
 
 	@BeforeEach
 	void setUp() {
 		this.repository = mock(ProcessRepository.class);
-
 		this.processService = new ProcessService(repository);
 	}
 

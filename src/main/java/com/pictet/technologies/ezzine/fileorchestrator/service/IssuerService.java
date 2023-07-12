@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -17,4 +19,9 @@ public class IssuerService {
         return issuerRepository.findAll();
     }
 
+    public Set<String> getNamesOfIssuers() {
+        return this.getAllIssuers().stream()
+                .map(IssuerEntity::getName)
+                .collect(Collectors.toSet());
+    }
 }
