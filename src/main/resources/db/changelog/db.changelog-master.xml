@@ -19,11 +19,12 @@
 
 
 	<include file="short_selling_eligible_security.sql"
-		relativeToChangelogFile="true" />
-
+			 relativeToChangelogFile="true"/>
 
 	<include file="uk-list-exempted-shares.sql"
-		relativeToChangelogFile="true" />
+			 relativeToChangelogFile="true"/>
 
+	<include file="syntactic-data/db.changelog.xml"
+			 relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
