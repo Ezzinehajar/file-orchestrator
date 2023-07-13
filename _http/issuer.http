@@ -1,0 +1,21 @@
+### Get all isssuers
+GET http://localhost:8080/api/v1/issuer
+
+### By filters
+GET http://localhost:8080/api/v1/issuer?isin=CA&name=hunter&date=2021-02-03
+
+###  Filter by name
+GET  http://localhost:8080/api/v1/issuer?name=HUntER
+
+### Filter by isin
+GET http://localhost:8080/api/v1/issuer?isin=A
+
+### Filter by date
+GET  http://localhost:8080/api/v1/issuer?date=2021-01-02
+
+### Names of issuer
+GET  http://localhost:8080/api/v1/issuer/names
+
+
+###  Retrieve the number of Issuers starting with the prefix name
+GET http://localhost:8080/api/v1/issuer/names/number-same-prefix-name?name=H

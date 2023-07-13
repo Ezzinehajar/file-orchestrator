@@ -51,4 +51,13 @@ public class IssuerService {
                 })
                 .toList();
     }
+
+    public long getNumberOfIssuerWithTheSamePrefixName(String name) {
+        return this.getAllIssuers().stream()
+                .filter(issuerEntity -> {
+                    if (name != null) return issuerEntity.getName().startsWith(name);
+                    return true;
+                })
+                .count();
+    }
 }

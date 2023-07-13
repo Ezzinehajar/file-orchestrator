@@ -28,29 +28,10 @@ public class IssuerController {
             @RequestParam(required = false) LocalDate date
 
     ) {
-        if (name == null && isin == null && date == null) {
-            return service.getAllIssuers();
-        }
-
-        return service.getAllIssuers()
-                .stream()
-//                .filter(it -> filterByName(it, name))
-                .filter(issuerEntity -> {
-                    if (isin != null) return issuerEntity.getIsin().startsWith(isin);
-                    return true;
-                })
-                .filter(IssuerEntity -> {
-                    if (name != null) return IssuerEntity.getName().toUpperCase().contains(name.toUpperCase());
-                    return true;
-                })
-                .filter(issuerEntity -> {
-                    if (date != null) return issuerEntity.getDate().isBefore(date);
-                    return true;
-                })
-                .toList();
+        return service.filterNamesOfIssuer(isin, name, date);
     }
 
-//    private boolean filterByName(IssuerEntity entity, String name) {
+    //    private boolean filterByName(IssuerEntity entity, String name) {
 //       return Optional.ofNullable(name)
 //                .map(String::toUpperCase)
 //                .map(it -> entity.getName().toUpperCase().contains(it))
@@ -64,6 +45,13 @@ public class IssuerController {
     @GetMapping(path = "/issuer/names")
     public Set<String> getNamesOfIssuers() {
         return service.getNamesOfIssuers();
+    }
+
+    @GetMapping(path = "/issuer/names/number-same-prefix-name")
+    public long getNumbersOfIssuer(
+            @RequestParam(required = false) String name
+    ) {
+        return service.getNumberOfIssuerWithTheSamePrefixName(name);
     }
 }
 
