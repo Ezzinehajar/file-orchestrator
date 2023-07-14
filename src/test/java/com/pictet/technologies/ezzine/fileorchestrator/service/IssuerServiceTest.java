@@ -24,7 +24,7 @@ class IssuerServiceTest {
     }
 
     @Test
-    void returns_names_of_issuer() {
+    void testFilterNamesOfIssuer() {
         when(this.issuerRepository.findAll())
                 .thenReturn(List.of(
                         IssuerEntity.builder()
@@ -44,11 +44,46 @@ class IssuerServiceTest {
         var result = this.issuerService.getNamesOfIssuers();
 
         assertThat(result)
-                .isEqualTo(Set.of(
-                        "A Duplicated name",
-                        "B Duplicated name",
-                        "Duplicated name"
-                ));
+                .isEqualTo(
+                        Set.of(
+                                "A Duplicated name",
+                                "B Duplicated name",
+                                "Duplicated name"
+                        ));
+    }
+
+    @Test
+    void testGetNamesOfIssuers() {
+
+//        when(this.issuerRepository.findAll())
+//                .thenReturn(( Set.of(
+//                        IssuerEntity.builder()
+//                                .name("Schlumberger NV ")
+//                                .build(),
+//                        IssuerEntity.builder()
+//                                .name("Sol Gel ")
+//                                .build()
+//
+//                ));
+
+        var issuerEntity1 = new IssuerEntity("", "Hunter Technology Corp", null);
+        var issuerEntity2 = new IssuerEntity(" ", "Sol Gel", null);
+
+
+        when(this.issuerRepository.findAll())
+                .thenReturn(List.of(
+                        issuerEntity1,
+                        issuerEntity2));
+
+        Set<String> names = issuerService.getNamesOfIssuers();
+
+        assertThat(names)
+                .isEqualTo(
+                        Set.of(
+                                "Hunter Technology Corp",
+                                "Sol Gel"
+                        ));
+
     }
 
 }
